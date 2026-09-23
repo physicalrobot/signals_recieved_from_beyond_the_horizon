@@ -1,0 +1,62 @@
+// *****************
+// Global Variables
+// *****************
+
+// Spaces
+$base-spacing-unit: 20px;
+
+// Transition
+$global-transition: all .2s;
+
+
+// *****************
+// Color Variables
+// *****************
+$brand-color: #c8baf5;       // pastel lavender (primary accent)
+$brand-blue: #b5d0ff;        // pastel blue (secondary accent)
+$brand-mint: #c5ffeb;        // pastel mint (tertiary accent)
+$brand-lilac: #ebe3ff;       // lightest lavender
+$dark: #100d24;              // darkest elements (page overlay)
+$blue-dark: #1f1848;         // cards/panels — richer purple
+$gray: #9d96b8;              // purple-tinted mid gray
+$light-gray: #ddd8f5;        // purple-tinted light text
+$white: #f0eeff;             // slightly lavender white
+
+// Body Color
+$text-color: $light-gray;
+
+// Background Colors
+$background-color: #1a1538;  // dark lilac-blue — visible color, not near-black
+
+// Callouts Colors
+$callout-note: #0a69da;
+$callout-tip: #1a7f38;
+$callout-important: #8251e0;
+$callout-warning: #9b6800;
+$callout-caution: #cf222e;
+
+
+// *****************
+// Typography
+// *****************
+$base-font-size: 18px;
+$base-font-style: normal;
+$base-font-variant: normal;
+$base-font-weight: normal;
+$base-font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+$base-line-height: 1.7;
+
+// Headings
+$heading-font-weight: normal;
+$heading-font-family: 'PressStart2P', monospace;
+$heading-color: $brand-blue;    // pastel blue #b5d0ff
+
+$font-size-h1:  24px;
+$font-size-h2:  18px;
+$font-size-h3:  16px;
+$font-size-h4:  14px;
+$font-size-h5:  12px;
+$font-size-h6:  11px;
+
+$heading-line-height: 1.4em;
+$heading-letter-spacing: -1px;

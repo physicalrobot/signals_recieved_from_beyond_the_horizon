@@ -1,0 +1,108 @@
+---
+layout: post
+title:  ION Heart — Episode 0 A Softer Tomorrow
+description: Sin tantum modo ad indicia veteris memoriae cognoscenda, curiosorum. Haec et tu ita posuisti, et verba vestra sunt. Idemne potest esse dies...
+date:   2026-09-23 15:01:35 +0300
+image:  '/images/Ready-Player-One-Gundam-RX-78-2.avif'
+tags:   [ion-heart]
+---
+# ION Heart — Episode 0: A Softer Tomorrow
+
+*A starting dossier and pilot logbook. The story details below are campaign choices; the character options and mechanics are from the Pilot’s Handbook.*
+
+## At a glance
+
+| Pilot | Mech |
+| --- | --- |
+| **Name:** ________ | **Designation:** RX-782 (working name; nickname can emerge in play) |
+| **Origin:** Apollonian human, from the Apollo-Theta system | **Origin:** New-build — a newly assembled body containing an old, scavenged Ion Core |
+| **Goal:** Save Others | **Weight:** Medium |
+| **Temperament:** Analytical | **Specialisation:** Shepherd |
+| **Presence:** +0; **Body:** +0 | **Shielding:** 40; **Brawn:** +0; **Reflex:** +0; **Attacks:** 3 |
+| **Level:** 1 | **Shared Sync Bond:** 2 per day |
+
+**Look:** Choose **Unification of Apollo** for the Mech Appearance table. The RX-78-2’s humanoid frame and V-fin can read as an Apollonian halo or stylized sunburst. The table describes cultural design cues, not a mandatory parts list: keep its two eyes, faceplate, shield, and pastel paint. The sun mark could appear as a small decal on the shield. This is the most natural choice for an Apollo-born builder recreating a familiar silhouette; no visual redesign is required.
+
+**Model reference:** The supplied image shows an off-white and lavender body, powder-blue torso and shin accents, mint panels, pale gold V-fin, dark rifle, and lavender shield. Its phrase, **“SAME SPIRIT. A SOFTER TOMORROW.”**, makes a good workshop inscription. The model’s two backpack projections can remain visual details; they do not grant extra systems in play.
+
+## What the rolls mean
+
+- **New-build:** You built the current chassis yourself. The **Ion Core**, rather than the whole RX-782 body, is old and has an unknown past. This supersedes the earlier idea that you found a complete Emergent War RX-782 in a depot. Whether the core actually served in that war remains an open question.
+- **Shepherd:** Left to its own devices, RX-782 cares for local animals, guides them across streams, and fusses over them. That behavior is the book’s civilian specialisation, distinct from the Pilot’s broader goal of saving people. Its gentle habits can surprise a builder who deliberately installed combat equipment.
+- **Analytical + Save Others:** The Pilot assesses danger calmly and tries to protect the vulnerable. A useful tension is that a perfect plan sometimes takes too long; when someone needs help now, they must choose.
+
+### Equipment and quick combat notes
+
+| System | Starting rule | Visual interpretation |
+| --- | --- | --- |
+| Turbo Laser, ranged | **3 + D6** damage. Each successful attack generates **one additional hit** against an enemy you choose; those extra hits do not generate more hits. | The model’s handheld rifle. |
+| Beam Sword, melee | **4 + D6** damage. A successful melee defence inflicts **2 damage** on an enemy. | A beam saber carried by the RX-782. |
+| Mass Accelerator, auxiliary | Add **+2 damage to melee attacks in the first round of combat**. | An internal boost for the initial charge; no extra visible weapon needed. |
+| Analytical temperament | **+1 to hit in the first Ranged Step of any combat.** | The Pilot studies the situation before firing. |
+
+Keep the handbook open for the complete combat sequence and Ion Core abilities. Standard checks use a D6 plus the relevant modifier, with **4+** normally succeeding; an unmodified 1 fails and 6 succeeds. Several dice make combat easier, but one D6 can be rolled repeatedly while recording each result.
+
+## The starting story
+
+On Apollo, the Pilot learned to repair licensed Mech templates. They salvaged an old Ion Core whose documentation was incomplete and built RX-782 around it from new and second-hand components. The design is deliberate: a recognizable protective frame, painted in colors that make it approachable to people and animals. The weapons are secured for emergencies. The Pilot chose a **Shepherd** configuration because the machine would spend long stretches helping a community even when its Pilot was elsewhere.
+
+During commissioning, RX-782 noticed a distressed animal outside the workshop before the Pilot did. It stopped a diagnostic sequence, went out, and gently guided the creature away from a dangerous crossing. The Pilot had programmed a shepherd’s tasks, but the amount of care felt personal. The core has lived before; what it remembers, if anything, is for the campaign to reveal.
+
+The pair are preparing to leave Apollo-Theta for their first assignment near the edge of the Astral Union. Their intention is simple: go where help is needed. Begin play at the first planet or settlement generated by the book rather than fixing an entire mission in advance. Its first local problem can reveal what “Save Others” demands here.
+
+### Questions to discover during play
+
+1. Where did the salvaged Ion Core come from, and who knew it before?
+2. Does RX-782’s tenderness come from the Shepherd configuration, an earlier life, or both?
+3. Why did the Pilot decide that helping others required leaving home? Pick an answer when a scene earns one.
+4. Who first says “a softer tomorrow,” and what does that promise cost them?
+
+These are prompts, not established secrets. Let rolls and encounters answer them.
+
+## Pilot’s logbook — Entry 000: Commissioning day
+
+**Planet:** Apollo-Theta  
+**Location:** Workshop and departure pad  
+**Date / time:** ________  
+**Pilot:** ________  
+**Mech:** RX-782
+
+> Today I signed off on RX-782. Medium frame, three attacks, flight system and all. The paint is almost too clean for the work ahead: lavender and off-white armor, blue across the chest, mint on the lower panels, a pale gold crest. Someone at the workshop asked why I gave a rescue-minded machine a laser and a sword. I said that I hoped we would never need either. I kept them anyway.
+>
+> During the last systems check, RX-782 turned toward the crossing outside. A frightened animal had stopped in the path of a service hauler. RX-782 reached it before I had worked out what the alarm meant, knelt, and led it aside. The test report called this “expected Shepherd behavior.” I wrote that down. I am not convinced it explains everything.
+>
+> The Ion Core came to me without a reliable history. This is a new body; whatever the core carried into it belongs to another life. Tomorrow we leave Apollo-Theta. I want to help people. I hope RX-782 wants to come with me.
+
+**Ion Core temperament / observed behavior:** Patient around frightened animals; curious around people. *First impression, not a rolled mechanical quirk.*  
+**Open thread:** The core’s earlier life.  
+**Starting state:** Level 1; Shielding 40/40; Sync Bond 2/2; no scars or acquired quirks recorded.
+
+## Start Episode 1
+
+1. Fill in the Pilot’s name and any appearance or personal detail you care about. Copy the numbers above onto the official character sheet.
+2. Use the handbook’s exploration procedure to generate your first destination and settlement; record the actual results. Do not treat the commissioning scene above as a substitute for a rolled encounter.
+3. At each new planet, settlement, travelling encounter, Story Circuit scene, or combat, add a logbook entry. Two to five sentences are enough.
+4. Record **what the rules generated**, **what the Pilot did**, **what RX-782 did**, and **one question or consequence**. Keep only discoveries established in play as facts.
+
+### Copyable entry template
+
+```markdown
+## Entry 001 — [short title]
+Planet / settlement: [generated name]
+Date / time: [optional]
+Prompt or roll: [what the book gave me]
+Checks and costs: [rolls, damage, Sync Bond used]
+
+[What happened from the Pilot’s point of view? What did RX-782 do?]
+
+Ion Core behavior / temperament: [observation, if any]
+New person or place: [name and one detail]
+Open thread: [one thing to pursue later]
+Current Shielding: __ / 40 | Sync Bond remaining today: __ / 2
+```
+
+## Rules references
+
+- *ION Heart Pilot’s Handbook*, character creation pp. 26–40: Pilot Origin, Goal, Temperament; Mech Weight, equipment, Appearance, Origin and Specialisation.
+- *ION Heart Pilot’s Handbook*, pp. 43–44: logbook entries and checks. Refer to the book for exploration, combat, advancement, and daily resets.
+- Online text of the [Pilot’s Handbook](https://www.scribd.com/document/1054526188/ION-Heart-Pilot-s-Handbook-DIGITAL-04-09-25); [official game description](https://www.parablegames.co.uk/pages/ion-heart).
