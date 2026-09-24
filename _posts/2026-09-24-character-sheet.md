@@ -3,7 +3,7 @@ layout: post
 title: "Plowshare — Character Sheet"
 description: "The pilot and mech at the start of our ION Heart journey."
 date: 2026-09-24
-image: '/images/plowshare-and-pilot.png'
+image: '/images/pilot-mech.png'
 tags: [ion-heart]
 ---
 
@@ -12,7 +12,7 @@ tags: [ion-heart]
 An Apollonian pilot and a rebuilt Mech set out to see what lies beyond home.
 
 <iframe
-  src="{{ '/assets/pdfs/Plowshare-Character-Sheet.pdf' | relative_url }}"
+  src="{{ '/assets/pdfs/Plowshare-Character-Sheet.pdf' | relative_url }}#toolbar=0&navpanes=0&scrollbar=0"
   title="Plowshare character sheet"
   width="100%"
   height="900"
