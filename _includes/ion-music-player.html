@@ -1,0 +1,153 @@
+{% assign ion_music_title = include.title | default: 'ION Heart soundtrack' %}
+<div class="ion-music" id="ion-music-player" data-turbo-permanent role="group" aria-label="Music player">
+  <button class="ion-music__play" type="button" aria-label="Play music" title="Play music">▶</button>
+  <div class="ion-music__middle">
+    <div class="ion-music__title">♫ {{ ion_music_title | escape }}</div>
+    <input class="ion-music__seek" type="range" min="0" max="1000" value="0" aria-label="Seek through track">
+    <span class="ion-music__time">0:00 / 0:00</span>
+  </div>
+  <button class="ion-music__mute" type="button" aria-label="Mute music" title="Mute music">♪</button>
+  <audio preload="metadata" src="{{ include.src | relative_url }}" {% if include.loop %}loop{% endif %}></audio>
+</div>
+
+<style>
+  .ion-music {
+    --ion-ink: #edfaff;
+    position: fixed;
+    left: max(14px, env(safe-area-inset-left));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    z-index: 2147482000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: min(320px, calc(100vw - 28px));
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border: 1px solid #aaa9e4;
+    border-radius: 18px;
+    background: #18223dea;
+    box-shadow: 0 12px 32px #10152f80;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: var(--ion-ink);
+    font: 13px/1.3 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .ion-music button {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: linear-gradient(115deg, #d8d4ff, #c5ffeb);
+    color: #1d2940;
+    font: inherit;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .ion-music button:hover { filter: brightness(1.08); }
+  .ion-music button:focus-visible,
+  .ion-music__seek:focus-visible { outline: 3px solid #ffe6a8; outline-offset: 3px; }
+  .ion-music__middle { min-width: 0; flex: 1; }
+  .ion-music__title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 650;
+  }
+  .ion-music__seek { display: block; width: 100%; height: 14px; margin: 2px 0; accent-color: #c5ffeb; cursor: pointer; }
+  .ion-music__time { display: block; font-size: 11px; opacity: .75; font-variant-numeric: tabular-nums; }
+  @media (max-width: 600px) {
+    .ion-music { bottom: max(76px, calc(env(safe-area-inset-bottom) + 76px)); width: min(290px, calc(100vw - 28px)); }
+  }
+</style>
+
+<script>
+(() => {
+  const root = document.getElementById('ion-music-player');
+  if (!root || root.dataset.initialized) return;
+  root.dataset.initialized = 'true';
+
+  // Turbo processes [data-turbo-permanent] elements as part of its own startup,
+  // which races with this script if it runs immediately (this script executes
+  // synchronously at parse time, but Turbo's <script type="module"> tag doesn't
+  // run until just before DOMContentLoaded). If Turbo touches this node while a
+  // load is in flight, the browser's media pipeline aborts it as unsupported.
+  // Waiting for DOMContentLoaded guarantees Turbo's startup has already finished.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start, { once: true });
+  } else {
+    start();
+  }
+
+  function start() {
+    const audio = root.querySelector('audio');
+    audio.load();
+    const play = root.querySelector('.ion-music__play');
+    const mute = root.querySelector('.ion-music__mute');
+    const seek = root.querySelector('.ion-music__seek');
+    const time = root.querySelector('.ion-music__time');
+    const format = seconds => Number.isFinite(seconds) ? `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}` : '0:00';
+    const update = () => {
+      const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
+      seek.value = duration ? Math.round(audio.currentTime / duration * 1000) : 0;
+      seek.disabled = !duration;
+      time.textContent = `${format(audio.currentTime)} / ${format(duration)}`;
+      play.textContent = audio.paused ? '▶' : 'Ⅱ';
+      play.setAttribute('aria-label', audio.paused ? 'Play music' : 'Pause music');
+      play.title = audio.paused ? 'Play music' : 'Pause music';
+      mute.textContent = audio.muted ? '×' : '♪';
+      mute.setAttribute('aria-label', audio.muted ? 'Unmute music' : 'Mute music');
+      mute.title = audio.muted ? 'Unmute music' : 'Mute music';
+    };
+    const STORAGE_KEY = 'ion-music-state';
+    const loadState = () => {
+      try { return JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || {}; }
+      catch { return {}; }
+    };
+    const saveState = () => {
+      try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+          t: audio.currentTime, playing: !audio.paused, muted: audio.muted, volume: audio.volume
+        }));
+      } catch {}
+    };
+
+    play.addEventListener('click', async () => {
+      if (!audio.paused) { audio.pause(); return; }
+      try { await audio.play(); }
+      catch { play.title = 'Audio could not play. Check the music file path.'; }
+    });
+    mute.addEventListener('click', () => { audio.muted = !audio.muted; update(); saveState(); });
+    seek.addEventListener('input', () => {
+      if (Number.isFinite(audio.duration)) audio.currentTime = Number(seek.value) / 1000 * audio.duration;
+    });
+    ['loadedmetadata', 'timeupdate', 'durationchange', 'play', 'pause', 'ended', 'volumechange'].forEach(event => audio.addEventListener(event, update));
+    ['timeupdate', 'play', 'pause', 'volumechange'].forEach(event => audio.addEventListener(event, saveState));
+    addEventListener('pagehide', saveState);
+    audio.addEventListener('error', () => { time.textContent = 'Audio unavailable'; play.disabled = true; });
+    update();
+
+    const state = loadState();
+    audio.volume = typeof state.volume === 'number' ? state.volume : 0.65;
+    audio.muted = !!state.muted;
+    const resumeTime = typeof state.t === 'number' ? state.t : 0;
+    const shouldPlay = state.playing !== false;
+
+    if (resumeTime > 0) {
+      const setTime = () => { audio.currentTime = resumeTime; };
+      if (audio.readyState >= 1) setTime();
+      else audio.addEventListener('loadedmetadata', setTime, { once: true });
+    }
+    if (shouldPlay) {
+      audio.play().catch(() => {
+        const resume = () => { audio.play().catch(() => {}); };
+        document.addEventListener('pointerdown', resume, { once: true });
+        document.addEventListener('keydown', resume, { once: true });
+      });
+    }
+  }
+})();
+</script>

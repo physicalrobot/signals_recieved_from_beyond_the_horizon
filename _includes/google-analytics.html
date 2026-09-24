@@ -5,5 +5,10 @@
   function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
-  gtag('config', '{{ site.data.settings.google-analytics }}');
+  gtag('config', '{{ site.data.settings.google-analytics }}', { send_page_view: false });
+  gtag('event', 'page_view', { page_path: location.pathname + location.search });
+
+  document.addEventListener('turbo:load', function () {
+    gtag('event', 'page_view', { page_path: location.pathname + location.search });
+  });
 </script>
