@@ -94,6 +94,16 @@
   }
 }
 
+/* Hero Page — contain full image */
+.hero--page {
+  .hero__image {
+    img {
+      object-fit: contain;
+      object-position: center center;
+    }
+  }
+}
+
 /* Hero Withou Image */
 .hero-without-image {
   margin: 192px 0 96px;
