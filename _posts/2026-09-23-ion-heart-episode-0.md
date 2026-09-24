@@ -14,7 +14,7 @@ tags:   [ion-heart]
 
 | Pilot | Mech |
 | --- | --- |
-| **Name:** ________ | **Designation:** Plowshare (old military markings scoured off; original designation unknown) |
+| **Name:** Viku Starbuck | **Designation:** Plowshare (old military markings scoured off; original designation unknown) |
 | **Origin:** Apollonian human, from the Apollo-Theta system | **Origin:** New-build — an old war-era chassis and Ion Core, stripped down and rebuilt as a farmhand |
 | **Goal:** Adventure Forth | **Weight:** Medium |
 | **Temperament:** Analytical | **Specialisation:** Shepherd |
@@ -64,7 +64,7 @@ These are prompts, not established secrets. Let rolls and encounters answer them
 **Planet:** Apollo-Theta  
 **Location:** Workshop and departure pad  
 **Date / time:** ________  
-**Pilot:** ________  
+**Pilot:** Viku Starbuck  
 **Mech:** Plowshare
 
 > Today I signed off on Plowshare. Medium frame, three attacks, flight system and all. The paint is almost too clean for the work ahead: lavender and off-white armor, blue across the chest, mint on the lower panels, a pale gold crest. Someone at the workshop asked why I put a laser and a sword back on a decommissioned war frame I’d promised would spend its days minding livestock. I said that I hoped we would never need either. I kept them anyway.
@@ -79,7 +79,7 @@ These are prompts, not established secrets. Let rolls and encounters answer them
 
 ## Start Episode 1
 
-1. Fill in the Pilot’s name and any appearance or personal detail you care about. Copy the numbers above onto the official character sheet.
+1. The Pilot is **Viku Starbuck**; add any further appearance or personal detail you care about. Copy the numbers above onto the [official character sheet]({{ '/character-sheet' | relative_url }}).
 2. Use the handbook’s exploration procedure to generate your first destination and settlement; record the actual results. Do not treat the commissioning scene above as a substitute for a rolled encounter.
 3. At each new planet, settlement, travelling encounter, Story Circuit scene, or combat, add a logbook entry. Two to five sentences are enough.
 4. Record **what the rules generated**, **what the Pilot did**, **what Plowshare did**, and **one question or consequence**. Keep only discoveries established in play as facts.
