@@ -94,11 +94,10 @@
   }
 }
 
-/* Hero Page — contain full image */
+/* Hero Page — center on face rather than top */
 .hero--page {
   .hero__image {
     img {
-      object-fit: contain;
       object-position: center center;
     }
   }
