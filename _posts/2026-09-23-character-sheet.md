@@ -15,7 +15,7 @@ An Apollonian pilot and a rebuilt Mech set out to see what lies beyond home.
   src="{{ '/assets/pdfs/Plowshare-Character-Sheet.pdf' | relative_url }}#toolbar=0&navpanes=0&scrollbar=0"
   title="Plowshare character sheet"
   width="100%"
-  height="900"
+  height="530"
   style="border: 0;"
 ></iframe>
 
