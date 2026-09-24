@@ -60,7 +60,12 @@
   .ion-music__seek { display: block; width: 100%; height: 14px; margin: 2px 0; accent-color: #c5ffeb; cursor: pointer; }
   .ion-music__time { display: block; font-size: 11px; opacity: .75; font-variant-numeric: tabular-nums; }
   @media (max-width: 600px) {
-    .ion-music { bottom: max(76px, calc(env(safe-area-inset-bottom) + 76px)); width: min(290px, calc(100vw - 28px)); }
+    .ion-music {
+      left: auto;
+      right: max(16px, env(safe-area-inset-right));
+      bottom: max(16px, env(safe-area-inset-bottom));
+      width: min(290px, calc(100vw - 32px));
+    }
   }
 </style>
 
