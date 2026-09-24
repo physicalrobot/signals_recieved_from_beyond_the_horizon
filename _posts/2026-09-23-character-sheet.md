@@ -12,11 +12,11 @@ tags: [ion-heart]
 An Apollonian pilot and a rebuilt Mech set out to see what lies beyond home.
 
 <iframe
-  src="{{ '/assets/pdfs/Plowshare-Character-Sheet.pdf' | relative_url }}#toolbar=0&navpanes=0&scrollbar=0"
+  src="{{ '/assets/pdfs/Plowshare-Character-Sheet.pdf' | relative_url }}#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
   title="Plowshare character sheet"
   width="100%"
-  height="530"
-  style="border: 0;"
+  height="850"
+  style="border: 0; display: block;"
 ></iframe>
 
 [Open or download the editable character sheet]({{ '/assets/pdfs/Plowshare-Character-Sheet.pdf' | relative_url }})
