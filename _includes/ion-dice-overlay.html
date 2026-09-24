@@ -1,0 +1,175 @@
+<!-- ION Heart dice overlay: include once near the end of your Jekyll layout. -->
+<div id="ion-overlay-dice" class="ion-overlay-dice">
+  <div class="ion-overlay-dice__stage" aria-hidden="true"></div>
+  <div class="ion-overlay-dice__dock">
+    <label for="ion-overlay-dice-count">D6</label>
+    <select id="ion-overlay-dice-count" aria-label="Number of dice">
+      <option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option>
+      <option value="5" selected>5</option><option value="6">6</option>
+      <option value="7">7</option><option value="8">8</option>
+      <option value="9">9</option><option value="10">10</option>
+      <option value="11">11</option><option value="12">12</option>
+    </select>
+    <button type="button" class="ion-overlay-dice__button">Roll</button>
+  </div>
+  <div class="ion-overlay-dice__result" role="status" aria-live="polite"></div>
+</div>
+
+<style>
+  .ion-overlay-dice {
+    --dice-size:60px;
+    position:fixed;inset:0;z-index:2147483000;pointer-events:none;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  .ion-overlay-dice * {box-sizing:border-box}
+  .ion-overlay-dice__stage {position:absolute;inset:0;overflow:hidden;pointer-events:none}
+  .ion-overlay-dice__dock {
+    position:absolute;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));
+    display:flex;align-items:center;gap:8px;padding:8px 9px 8px 13px;
+    color:#edfaff;background:#18223dea;border:1px solid #aaa9e4;
+    border-radius:999px;box-shadow:0 12px 32px #10152f80;pointer-events:auto
+  }
+  .ion-overlay-dice__dock label {font-weight:800;font-size:.76rem;letter-spacing:.1em}
+  .ion-overlay-dice__dock select {
+    border:1px solid #9399c2;border-radius:8px;background:#202a4c;color:white;
+    padding:5px 4px;font:inherit;font-size:.84rem
+  }
+  .ion-overlay-dice__button {
+    border:0;border-radius:999px;padding:9px 17px;
+    background:linear-gradient(115deg,#d8d4ff,#c5ffeb);color:#1d2940;
+    font:800 .9rem system-ui,sans-serif;cursor:pointer
+  }
+  .ion-overlay-dice__button:hover {filter:brightness(1.08)}
+  .ion-overlay-dice__button:disabled {opacity:.6;cursor:wait}
+  .ion-overlay-dice__dock :focus-visible {outline:3px solid #ffe6a8;outline-offset:3px}
+  .ion-overlay-dice__result {
+    position:absolute;left:50%;top:max(12px,env(safe-area-inset-top));
+    transform:translateX(-50%);max-width:min(90vw,630px);
+    padding:9px 16px;border:1px solid #cecaff;border-radius:999px;
+    color:#fff;background:#1b2441ed;box-shadow:0 8px 25px #12182f77;
+    font-family:'PressStart2P',monospace;font-weight:400;font-size:.62rem;text-align:center;line-height:1.7;
+    opacity:0;transition:opacity .2s;pointer-events:none
+  }
+  .ion-overlay-dice__result.is-visible {opacity:1}
+  .ion-overlay-dice__flying {position:absolute;top:0;left:0;width:var(--dice-size);height:var(--dice-size);will-change:transform,opacity}
+  .ion-overlay-dice__cube {position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+  .ion-overlay-dice__face {
+    position:absolute;inset:0;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);
+    place-items:center;padding:7px;border-radius:10px;border:2px solid #fff;
+    background:linear-gradient(145deg,#f1edff,#d7d1ff);
+    box-shadow:inset 0 0 12px #ffffffa8,0 4px 10px #11193588;
+    backface-visibility:hidden
+  }
+  .ion-overlay-dice__flying:nth-child(3n+2) .ion-overlay-dice__face {background:linear-gradient(145deg,#effcff,#badcff)}
+  .ion-overlay-dice__flying:nth-child(3n+3) .ion-overlay-dice__face {background:linear-gradient(145deg,#edfff9,#bcebdc)}
+  .ion-overlay-dice__face[data-face="1"] {transform:translateZ(30px)}
+  .ion-overlay-dice__face[data-face="6"] {transform:rotateY(180deg) translateZ(30px)}
+  .ion-overlay-dice__face[data-face="3"] {transform:rotateY(90deg) translateZ(30px)}
+  .ion-overlay-dice__face[data-face="4"] {transform:rotateY(-90deg) translateZ(30px)}
+  .ion-overlay-dice__face[data-face="2"] {transform:rotateX(90deg) translateZ(30px)}
+  .ion-overlay-dice__face[data-face="5"] {transform:rotateX(-90deg) translateZ(30px)}
+  .ion-overlay-dice__pip {width:8px;height:8px;border-radius:50%;background:#424b75}
+  @media(max-width:520px) {
+    .ion-overlay-dice {--dice-size:48px}
+    .ion-overlay-dice__face[data-face="1"] {transform:translateZ(24px)}
+    .ion-overlay-dice__face[data-face="6"] {transform:rotateY(180deg) translateZ(24px)}
+    .ion-overlay-dice__face[data-face="3"] {transform:rotateY(90deg) translateZ(24px)}
+    .ion-overlay-dice__face[data-face="4"] {transform:rotateY(-90deg) translateZ(24px)}
+    .ion-overlay-dice__face[data-face="2"] {transform:rotateX(90deg) translateZ(24px)}
+    .ion-overlay-dice__face[data-face="5"] {transform:rotateX(-90deg) translateZ(24px)}
+  }
+</style>
+
+<script>
+(() => {
+  const root=document.getElementById('ion-overlay-dice');
+  if (!root || root.dataset.initialized) return;
+  root.dataset.initialized='true';
+  const stage=root.querySelector('.ion-overlay-dice__stage');
+  const countControl=root.querySelector('#ion-overlay-dice-count');
+  const button=root.querySelector('.ion-overlay-dice__button');
+  const result=root.querySelector('.ion-overlay-dice__result');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  const dots={1:[5],2:[1,9],3:[1,5,9],4:[1,3,7,9],5:[1,3,5,7,9],6:[1,3,4,6,7,9]};
+  const facing={1:[0,0],2:[-90,0],3:[0,-90],4:[0,90],5:[90,0],6:[0,180]};
+  let rolling=false, hideTimer;
+
+  function d6() {
+    if (globalThis.crypto?.getRandomValues) {
+      const limit=Math.floor(0x100000000/6)*6;
+      const number=new Uint32Array(1);
+      do {crypto.getRandomValues(number)} while(number[0]>=limit);
+      return number[0]%6+1;
+    }
+    return Math.floor(Math.random()*6)+1;
+  }
+  function makeDie() {
+    const flying=document.createElement('div');
+    flying.className='ion-overlay-dice__flying';
+    const cube=document.createElement('div');
+    cube.className='ion-overlay-dice__cube';
+    for(let n=1;n<=6;n++) {
+      const face=document.createElement('div');
+      face.className='ion-overlay-dice__face';
+      face.dataset.face=n;
+      for(const position of dots[n]) {
+        const pip=document.createElement('i');
+        pip.className='ion-overlay-dice__pip';
+        pip.style.gridArea=Math.ceil(position/3)+' / '+((position-1)%3+1);
+        face.appendChild(pip);
+      }
+      cube.appendChild(face);
+    }
+    flying.appendChild(cube);
+    stage.appendChild(flying);
+    return {flying,cube};
+  }
+  async function roll(requested) {
+    if(rolling) return;
+    rolling=true;button.disabled=true;
+    clearTimeout(hideTimer);
+    result.classList.remove('is-visible');
+    stage.replaceChildren();
+    const count=Math.max(1,Math.min(12,Number(requested)||5));
+    const values=Array.from({length:count},d6);
+    const width=innerWidth,height=innerHeight;
+    const small=reduced.matches;
+    const motions=values.map((value,i) => {
+      const {flying,cube}=makeDie();
+      const size=width<=520?48:60;
+      const lane=(i+.5)/count;
+      const endX=Math.max(8,Math.min(width-size-8, width*(.08+.84*lane)+(Math.random()-.5)*35));
+      const startX=Math.max(0,Math.min(width-size,endX+(Math.random()-.5)*180));
+      const endY=Math.max(95,Math.min(height*.48,200+(i%3)*55));
+      const [rx,ry]=facing[value];
+      if(small) {
+        flying.style.transform='translate3d('+endX+'px,'+endY+'px,0)';
+        cube.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';
+        return Promise.resolve();
+      }
+      const duration=1650+(i%4)*130;
+      const travel=flying.animate([
+        {transform:'translate3d('+startX+'px,-100px,0) rotateZ(-35deg)',offset:0},
+        {transform:'translate3d('+(endX-35)+'px,'+(endY+110)+'px,0) rotateZ(18deg)',offset:.58},
+        {transform:'translate3d('+(endX+18)+'px,'+(endY-45)+'px,0) rotateZ(-8deg)',offset:.79},
+        {transform:'translate3d('+endX+'px,'+endY+'px,0) rotateZ(0deg)',offset:1}
+      ],{duration,delay:i*70,easing:'cubic-bezier(.22,.7,.32,1)',fill:'forwards'});
+      cube.animate([
+        {transform:'rotateX(0deg) rotateY(0deg)'},
+        {transform:'rotateX('+(720+rx)+'deg) rotateY('+(720+ry)+'deg)'}
+      ],{duration,delay:i*70,easing:'cubic-bezier(.2,.65,.28,1)',fill:'forwards'});
+      return travel.finished.catch(()=>{});
+    });
+    await Promise.all(motions);
+    const hits=values.filter(v=>v>=4).length;
+    const total=values.reduce((a,b)=>a+b,0);
+    result.textContent='Rolls: '+values.join(', ')+' · Total: '+total+' · Raw 4+ hits: '+hits;
+    result.classList.add('is-visible');
+    rolling=false;button.disabled=false;
+    hideTimer=setTimeout(()=>{stage.replaceChildren();result.classList.remove('is-visible')},small?1800:3200);
+  }
+  button.addEventListener('click',()=>roll(countControl.value));
+  window.ionDiceOverlay={roll};
+})();
+</script>
