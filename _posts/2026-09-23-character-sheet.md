@@ -11,13 +11,6 @@ tags: [ion-heart]
 
 An Apollonian pilot and a rebuilt Mech set out to see what lies beyond home. Here's their starting character sheet.
 
-<img
-  src="{{ '/assets/images/plowshare-character-sheet-preview.png' | relative_url }}"
-  alt="ION Heart character sheet for Plowshare: an Apollonian pilot, a medium Shepherd Mech, starting equipment, and two portraits"
-  width="1819"
-  height="2573"
-  loading="lazy"
-  style="display: block; width: 100%; max-width: 850px; height: auto; margin: 1.5rem auto;"
->
+<img src="{{ '/assets/images/plowshare-character-sheet-preview.png' | relative_url }}" alt="ION Heart character sheet for Plowshare" style="display: block; width: 100%; max-width: 850px; height: auto; margin: 1.5rem auto;">
 
 The image is a preview. [Open the fillable PDF]({{ '/assets/pdfs/Plowshare-Character-Sheet.pdf' | relative_url }}) to enter your own changes or save a copy. The pilot's name is still open.
