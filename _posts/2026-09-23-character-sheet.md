@@ -2,7 +2,7 @@
 layout: post
 title: "Plowshare — Character Sheet"
 description: "The pilot and mech at the start of our ION Heart journey."
-date: 2026-09-24
+date: 2026-09-23
 image: '/images/pilot-mech.png'
 tags: [ion-heart]
 ---
